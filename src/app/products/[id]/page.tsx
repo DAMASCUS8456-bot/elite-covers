@@ -36,7 +36,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
           <h1 className="text-2xl font-semibold">{product.name}</h1>
           <div className="text-sm opacity-70 mt-1">Category: {product.category}</div>
           <p className="opacity-80 mt-2">{product.description}</p>
-          <div className="mt-4 text-lg">${(product.priceCents / 100).toFixed(2)}</div>
+          <div className="mt-4 text-lg">{(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })).format(product.priceCents/100)}</div>
           {!product.inStock && <div className="mt-2 text-red-600">Out of stock</div>}
           <div className="mt-4 flex gap-2">
             <button

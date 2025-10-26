@@ -57,7 +57,7 @@ export default function CartPage() {
               <li key={item.id} className="py-3 flex items-center justify-between gap-4">
                 <div>
                   <div className="font-medium">{product!.name}</div>
-                  <div className="text-sm opacity-70">${(product!.priceCents / 100).toFixed(2)}</div>
+                  <div className="text-sm opacity-70">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product!.priceCents/100)}</div>
                 </div>
                 <div className="flex items-center gap-2">
                   <input
@@ -75,7 +75,7 @@ export default function CartPage() {
           </ul>
           <div className="flex items-center justify-between">
             <div className="font-semibold">Subtotal</div>
-            <div>${(subtotal / 100).toFixed(2)}</div>
+            <div>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal/100)}</div>
           </div>
           <div className="flex gap-3">
             <button

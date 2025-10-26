@@ -1,6 +1,7 @@
 "use client"
 
 import { useOrders } from '@/store/orders'
+import { getProduct } from '@/lib/products'
 
 export default function OrdersPage() {
   const orders = useOrders((s) => s.orders)
@@ -21,12 +22,15 @@ export default function OrdersPage() {
             <div className="font-medium">Order {o.id}</div>
             <div className="text-sm opacity-70">{new Date(o.createdAt).toLocaleString()}</div>
             <div className="mt-2 text-sm">
-              {o.items.map(i => (
-                <div key={i.id} className="flex items-center justify-between">
-                  <span>{i.id}</span>
-                  <span>Qty {i.quantity}</span>
-                </div>
-              ))}
+              {o.items.map(i => {
+                const p = getProduct(i.id)
+                return (
+                  <div key={i.id} className="flex items-center justify-between">
+                    <span>{p?.name ?? i.id}</span>
+                    <span>Qty {i.quantity}</span>
+                  </div>
+                )
+              })}
             </div>
             <div className="mt-2">Total ${(o.totalCents / 100).toFixed(2)}</div>
           </li>
