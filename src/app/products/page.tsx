@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { products } from '@/lib/products'
 import { useMemo, useState } from 'react'
+import { AddToCartButton } from './shared'
 
 export default function ProductsPage() {
   const [q, setQ] = useState('')
@@ -45,15 +46,16 @@ export default function ProductsPage() {
           {list.map((p) => (
             <li key={p.id} className="border rounded p-4">
               <div className="aspect-[4/3] bg-gray-100 mb-3 relative overflow-hidden">
-                <Image src={p.image} alt={p.name} fill className="object-contain" />
+                <Image src={p.images[0]} alt={p.name} fill className="object-contain" />
               </div>
               <div className="font-medium">{p.name}</div>
               <div className="text-sm opacity-80">{p.description}</div>
               <div className="mt-2">${(p.priceCents / 100).toFixed(2)}</div>
-              <div className="mt-2">
+              <div className="mt-3 flex gap-3">
                 <Link className="text-blue-600 underline" href={`/products/${p.id}`}>
                   View details
                 </Link>
+                <AddToCartButton id={p.id} disabled={!p.inStock} />
               </div>
             </li>
           ))}

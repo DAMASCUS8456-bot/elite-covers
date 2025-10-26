@@ -4,7 +4,7 @@ export type Product = {
   description: string
   priceCents: number
   currency: 'usd'
-  image: string
+  images: string[]
   inStock: boolean
   category: 'apparel' | 'accessories'
 }
@@ -16,7 +16,7 @@ export const products: Product[] = [
     description: 'Soft cotton tee in classic fit',
     priceCents: 1999,
     currency: 'usd',
-    image: '/images/products/basic-tee.svg',
+    images: ['/images/products/basic-tee.svg'],
     inStock: true,
     category: 'apparel',
   },
@@ -26,7 +26,7 @@ export const products: Product[] = [
     description: 'Fleece-lined hoodie for all-day comfort',
     priceCents: 4999,
     currency: 'usd',
-    image: '/images/products/cozy-hoodie.svg',
+    images: ['/images/products/cozy-hoodie.svg'],
     inStock: true,
     category: 'apparel',
   },
@@ -36,7 +36,7 @@ export const products: Product[] = [
     description: 'Insulated bottle keeps drinks cold 24h, hot 12h',
     priceCents: 2999,
     currency: 'usd',
-    image: '/images/products/steel-bottle.svg',
+    images: ['/images/products/steel-bottle.svg'],
     inStock: false,
     category: 'accessories',
   },
