@@ -2,11 +2,11 @@ export const dynamic = 'force-dynamic'
 
 export async function GET(
   _req: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   const { getProduct } = await import('@/lib/products')
   try {
-    const { id } = context.params
+    const { id } = await context.params
     if (!id || typeof id !== 'string') {
       return Response.json({ error: 'Invalid product id' }, { status: 400 })
     }
