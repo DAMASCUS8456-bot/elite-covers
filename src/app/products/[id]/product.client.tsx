@@ -9,12 +9,29 @@ export default function ClientProduct({ product }: { product: Product }) {
   const add = useCart((s) => s.add)
   const [imgIdx, setImgIdx] = useState(0)
   const images = product.images?.length ? product.images : ['/vercel.svg']
+  const [zoom, setZoom] = useState(false)
+  const [origin, setOrigin] = useState<{x:number;y:number}>({ x: 50, y: 50 })
   return (
     <div className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <div className="aspect-[4/3] bg-gray-100 relative overflow-hidden rounded">
-            <Image src={images[imgIdx]} alt={product.name} fill className="object-contain" />
+          <div
+            className="group aspect-[4/3] bg-gray-100 relative overflow-hidden rounded"
+            onMouseEnter={() => setZoom(true)}
+            onMouseLeave={() => setZoom(false)}
+            onMouseMove={(e) => {
+              const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect()
+              const x = ((e.clientX - rect.left) / rect.width) * 100
+              const y = ((e.clientY - rect.top) / rect.height) * 100
+              setOrigin({ x, y })
+            }}
+          >
+            <div
+              className="absolute inset-0 will-change-transform"
+              style={{ transformOrigin: `${origin.x}% ${origin.y}%`, transform: zoom ? 'scale(1.3)' : 'scale(1)' }}
+            >
+              <Image src={images[imgIdx]} alt={product.name} fill className="object-contain" />
+            </div>
           </div>
           {images.length > 1 && (
             <div className="mt-3 flex gap-2">

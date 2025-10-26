@@ -16,6 +16,7 @@ export function Nav() {
         <nav className="flex items-center gap-4 text-sm">
           <Link href="/products" className="hover:underline">Products</Link>
           <Link href="/offers" className="hover:underline">Offers</Link>
+          <Link href="/categories" className="hover:underline">Categories</Link>
           <Link href="/about" className="hover:underline">About</Link>
           <button className="hover:underline" onClick={() => setOpen(true)} aria-label="Open mini cart">Cart ({count})</button>
         </nav>
