@@ -24,10 +24,6 @@ jobs:
         run: npx tsc --noEmit
       - name: Build
         run: npm run build
-        env:
-          # Provide dummy keys so build doesn't fail on missing env
-          STRIPE_SECRET_KEY: 'sk_test_dummy'
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: 'pk_test_dummy'
   e2e:
     runs-on: ubuntu-latest
     needs: build

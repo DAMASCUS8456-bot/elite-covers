@@ -71,7 +71,7 @@ High-level architecture
 
 Notes
 - Routes have been consolidated under src/app; no parallel app/ directory remains.
-- Stripe: POST /api/checkout requires STRIPE_SECRET_KEY; endpoint returns 400/404/409 for invalid payloads or product issues.
+- Checkout: POST /api/checkout validates cart and returns PAYONEER_CHECKOUT_URL if set; otherwise simulates success and redirects back.
 
 Sources worth skimming first
 - README.md: project setup and endpoint summary

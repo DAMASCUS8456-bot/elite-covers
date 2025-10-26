@@ -52,9 +52,9 @@ A Next.js (App Router + TypeScript + Tailwind) storefront with products, offers,
 ## API
 - GET /api/products → { products }
 - GET /api/products/[id] → { product } | 404
-- POST /api/checkout → creates Stripe Checkout Session
+- POST /api/checkout → validates cart and returns a Payoneer redirect URL if configured (PAYONEER_CHECKOUT_URL), otherwise simulates success
   - Body: { items: [{ id, quantity }], successUrl, cancelUrl }
-  - Errors: 400 invalid payload, 404/409 product issues, 500 misconfig or server
+  - Errors: 400 invalid payload, 404/409 product issues
 
 ## Edge cases handled
 - Invalid JSON and schema errors in checkout
