@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -6,7 +6,7 @@ export default function Home() {
       <h1 className="text-2xl font-semibold mb-4">Welcome to the Store</h1>
       <p className="opacity-80 mb-6">Browse our latest products and add them to your cart.</p>
       <div>
-        <a className="text-blue-600 underline" href="/products">Go to Products →</a>
+        <Link className="text-blue-600 underline" href="/products">Go to Products →</Link>
       </div>
     </div>
   );
